@@ -1,0 +1,26 @@
+{
+  "name": "handlers-lib",
+  "version": "0.0.0",
+  "description": "Handlers Lib",
+  "author": "",
+  "license": "ISC",
+  "main": "build/index.js",
+  "types": "build/index.d.ts",
+  "scripts": {
+    "build": "npm run build:esbuild && npm run build:types",
+    "build:esbuild": "esbuild ./src/index.ts --bundle --tree-shaking=true --sourcemap --platform=node --target=node18.16 --outdir=build",
+    "build:types": "tsc --emitDeclarationOnly --outDir build",
+    "lint": "eslint ./src --ext .ts",
+    "format": "prettier -w src/**/*",
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "package": "exit 0",
+    "clean": "rm -fr coverage/ build/",
+    "build:lerna": "npx lerna run build --scope=handlers-lib",
+    "lint:lerna": "npx lerna run lint --scope=handlers-lib",
+    "test:lerna": "npx lerna run test --scope=handlers-lib"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.115"
+  }
+}

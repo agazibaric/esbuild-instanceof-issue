@@ -1,0 +1,14 @@
+{
+  "$schema": "node_modules/lerna/schemas/lerna-schema.json",
+  "useWorkspaces": true,
+  "packages": [
+    "packages/*"
+  ],
+  "version": "independent",
+  "useNx": true,
+  "command": {
+    "version": {
+      "conventionalCommits": true
+    }
+  }
+}

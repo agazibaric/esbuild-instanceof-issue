@@ -1,0 +1,31 @@
+{
+  "name": "lambda",
+  "version": "0.0.0",
+  "description": "Lambda",
+  "author": "",
+  "license": "ISC",
+  "main": "build/index.js",
+  "types": "build/index.d.js",
+  "scripts": {
+    "build": "npm run build:esbuild && npm run build:types",
+    "build:esbuild": "esbuild ./src/index.ts --bundle --tree-shaking=true --sourcemap --platform=node --target=node18.16 --outdir=build",
+    "build:types": "tsc --emitDeclarationOnly --outDir build",
+    "lint": "eslint ./src --ext .ts",
+    "format": "prettier -w src/**/*",
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "package": "mkdir -p ./dist; rm ./dist/*; zip -j ./dist/$(jq -r '(.name + \"-\" + .version)' package.json).zip ./build/index.js",
+    "clean": "rm -fr coverage/ build/ dist/",
+    "build:lerna": "npx lerna run build --scope=lambda",
+    "lint:lerna": "npx lerna run lint --scope=lambda",
+    "test:lerna": "npx lerna run test --scope=lambda",
+    "package:lerna": "npx lerna run package --scope=lambda"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.115",
+    "faker": "^6.6.6"
+  },
+  "dependencies": {
+    "handlers-lib": "*"
+  }
+}

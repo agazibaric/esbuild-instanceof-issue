@@ -1,0 +1,48 @@
+{
+  "name": "root",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "npx lerna run build",
+    "lint": "npx lerna run lint",
+    "test": "npx lerna run test",
+    "package": "npx lerna run package",
+    "clean": "npx lerna run clean",
+    "test:coverage": "vitest run --coverage",
+    "install": "npx lerna bootstrap --hoist",
+    "prepare": "husky install",
+    "historical-data": "lerna run --scope=historical-data",
+    "handlers-lib": "lerna run --scope=handlers-lib"
+  },
+  "lint-staged": {
+    "*.ts": [
+      "eslint --cache --fix",
+      "prettier --write"
+    ]
+  },
+  "devDependencies": {
+    "@types/node": "^20.5.3",
+    "@typescript-eslint/eslint-plugin": "^6.4.1",
+    "@typescript-eslint/parser": "^6.4.1",
+    "@vitest/coverage-c8": "^0.31.1",
+    "esbuild": "^0.19.2",
+    "eslint": "^8.47.0",
+    "husky": "^8.0.3",
+    "lerna": "^6.6.2",
+    "lint-staged": "^14.0.1",
+    "nx": "16.2.1",
+    "prettier": "^3.0.2",
+    "ts-mockito": "^2.6.1",
+    "typescript": "^5.1.6",
+    "unplugin-auto-import": "^0.16.6",
+    "vitest": "^0.34.2"
+  },
+  "dependencies": {
+    "date-fns": "^2.30.0",
+    "zod": "^3.22.2"
+  },
+  "engines": {
+    "node": "^18"
+  }
+}
